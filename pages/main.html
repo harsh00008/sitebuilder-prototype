@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="large-12">
+		<h1>Welcome to dashboard</h1>
+	</div>
+
+
+	<div id="div1" class="parent dropped row">
+		Sample Area
+	</div>
+
+	<script type="text/javascript">
+		jQuery(".draggable").draggable({
+			 helper: "clone",
+			 containment: "document",
+			 revert: true
+      	});
+
+		jQuery( ".dropped" ).droppable({
+			greedy: true,
+			refreshPositions: true,
+
+	      	drop: function(event, ui) {
+	      			
+					var target = $(event.target);
+					var dropped = $(ui.draggable).clone();
+					var temp = jQuery("#" + dropped.data('component')).first();
+					//var temp = jQuery("#" + dropped.data('component'));
+					console.log(temp);
+					temp.droppable();
+					target.append(temp.html());
+
+				}
+
+    	});
+	</script>
+
+</div>
